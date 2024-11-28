@@ -12,7 +12,7 @@ header{
 nav{
 
     grid-area: na;
-    
+    color: white;
 
 }
 main{
@@ -21,31 +21,48 @@ main{
 
  font-size: 25px;
 }
-aside{
-    grid-area: as;
+
+
+
+ #column1{
+    grid-area: as1;
     
     
 }
 
-footer{
-    
-    grid-area: fo;
+#column2{
+    grid-area: as2;
+
+}
  
+
+#text2{
+    grid-area: te2;
+    color: white;
+}
+#text1{
+    grid-area: te1;
+    color: white;
+}
+#link{
+    grid-area: li;
+    color: white;
+    
 }
 #wrapper{
     display: grid;
     background-image: url('vatten.jpg');
     height: 100%;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 8% 20% 32% 20% 20%;
+    grid-template-columns: 20% 20% 15% 25% 20%;
+    grid-template-rows: 8% 20% 32% 35% 5%;
     
 
     grid-template-areas: 
     ". he he he he"
     "na na na na na"
     "ma ma ma ma ma"
-    "as as as as as"
-    "fo fo fo fo fo"
+    "as1 as1 . as2 as2"
+    "te1 te1 li te2 te2"
     ;
 
 }
