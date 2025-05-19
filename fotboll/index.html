@@ -12,17 +12,17 @@
   <button id="Reset">Återställ laget</button>
   
   <div class="plan-container">
-    <div id="MV" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="MV">MV</div>
-    <div id="HB" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="HB">VB</div>
-    <div id="HMB" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="VMB">VMB</div>
-    <div id="VMB" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="HMB">HMB</div>
-    <div id="VB" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="VB">HB</div>
-    <div id="VCM" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="VCM">VCM</div>
-    <div id="HCM" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="HCM">HCM</div>
-    <div id="CAM" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="CAM">CAM</div>
-    <div id="VY" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="VY">VY</div>
-    <div id="HY" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="HY">HY</div>
-    <div id="ANF" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="ANF">ANF</div>
+    <div id="MV" class="position" data-role="MV">MV</div>
+    <div id="HB" class="position" data-role="HB">VB</div>
+    <div id="HMB" class="position" data-role="HMB">VMB</div>
+    <div id="VMB" class="position" data-role="VMB">HMB</div>
+    <div id="VB" class="position" data-role="VB">HB</div>
+    <div id="VCM" class="position" data-role="VCM">VCM</div>
+    <div id="HCM" class="position" data-role="HCM">HCM</div>
+    <div id="CAM" class="position" data-role="CAM">CAM</div>
+    <div id="VY" class="position" data-role="VY">VY</div>
+    <div id="HY" class="position" data-role="HY">HY</div>
+    <div id="ANF" class="position" data-role="ANF">ANF</div>
   </div>
 
   <div class="spelar-pool">
@@ -61,8 +61,7 @@
       <div class="spelare" id="Maradona" draggable="true">Maradona</div>
       <div class="spelare" id="Pele" draggable="true">Pele</div>
     </div>
-    
-    <div class="spelar-pool" id="spelarPool">
+
     <div class="section">
       <h3>Anfallare</h3>
       <div class="spelare" id="L.Messi" draggable="true">L. Messi</div>
@@ -78,35 +77,25 @@
   </div>
 
   <script>
-document.addEventListener("dragstart", function(event) {
-   dragstartHandler(event);
-});
+    document.getElementById("Reset").addEventListener("click", function() {
+      window.location.reload(true);
+    });
 
-document.getElementById("Reset").addEventListener("click", function() {
-  window.location.reload(true);
-});
+    document.addEventListener("dragstart", function(event) {
+      event.dataTransfer.setData("text", event.target.id);
+    });
 
-function dragstartHandler(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
+    document.addEventListener("dragover", function(event) {
+      event.preventDefault();
+    });
 
-function dragoverHandler(ev) {
-  ev.preventDefault();
-}
-
-function dropHandler(ev) {
-  ev.preventDefault();
-  const data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-}
-
-window.addEventListener('dragover', function(ev) {
-  const scrollMargin = 50;
-  const scrollSpeed = 10;
-  if (ev.clientY < scrollMargin) {
-    window.scrollBy(0, -scrollSpeed);
-  }
-});
+    document.addEventListener("drop", function(event) {
+      event.preventDefault();
+      const data = event.dataTransfer.getData("text");
+      if (event.target.classList.contains("position")) {
+        event.target.appendChild(document.getElementById(data));
+      }
+    });
   </script>
 
 </body>
