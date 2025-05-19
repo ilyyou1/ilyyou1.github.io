@@ -44,9 +44,10 @@ main{
     grid-area: te1;
     color: white;
 }
-#link{
+#länk{
     grid-area: li;
     color: white;
+    font-size: 40px;
     
 }
 #wrapper{

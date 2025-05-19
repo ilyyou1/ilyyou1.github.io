@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas{
+
+            position: absolute;
+        }
+        body{
+
+            background-color: lightgray;
+        }
+
+
+    </style>
+</head>   
+<body>
+    
+    <canvas id="canvas"></canvas>
+
+
+
+
+    <script>
+        var r=10;
+        var x=300;
+        var y=-r;
+        var ySpeed=1;
+        var xSpeed=5;
+        const g=0.2;
+        var degree=0;
+        var particles=[];
+        const amount=1000;
+        var width=window.innerWidth;
+        var height=window.innerHeight;
+
+
+        for(var i=0; i<amount; i++){
+
+             particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                xSpeed: Math.random() * 10 - 5,
+                ySpeed: Math.random() * 10 + 5,
+                radius: Math.random() * 5 + 1,
+                color: "rgba(255,255,255," + Math.random() + ")"
+            });
+
+
+        }
+        
+        var canvas=document.getElementById("canvas");
+        var ctx=canvas.getContext("2d");
+        canvas.width=width;
+        canvas.height=height;
+
+
+        function draw(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            
+            for(var i=0; i<amount; i++){
+
+                var particle=particles[i];
+                ctx.fillStyle=particle.color;
+                ctx.beginPath();
+                ctx.moveTo(particle.x,particle.y);
+                ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+            
+            
+            console.log("ritar ut")
+            update();
+        }
+
+        function update(){
+
+            degree=degree+2;
+            
+            for(var i =0; i<amount; i++){
+                
+                var particle= particles[i];
+
+                if(particle.y>=height+particle.radius){
+
+                    
+                    particle.y=-particle.radius;
+
+                }
+
+                particle.x=particle.x+ Math.cos(degree * Math.PI / 180)*0.5*particle.radius;
+                particle.y=particle.y+particle.ySpeed;
+            }
+
+        }
+
+
+
+        setInterval(draw,50);
+
+
+
+
+    </script>
+</body>
+</html>

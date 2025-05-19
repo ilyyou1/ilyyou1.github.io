@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drömelva</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <h2>Bygg din drömelva</h2>
+
+  <button id="Reset">Återställ laget</button>
+  
+  <div class="plan-container">
+    <div id="MV" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="MV">MV</div>
+    <div id="HB" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="HB">VB</div>
+    <div id="HMB" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="VMB">VMB</div>
+    <div id="VMB" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="HMB">HMB</div>
+    <div id="VB" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="VB">HB</div>
+    <div id="VCM" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="VCM">VCM</div>
+    <div id="HCM" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="HCM">HCM</div>
+    <div id="CAM" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="CAM">CAM</div>
+    <div id="VY" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="VY">VY</div>
+    <div id="HY" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="HY">HY</div>
+    <div id="ANF" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" class="position" data-role="ANF">ANF</div>
+  </div>
+
+  <div class="spelar-pool">
+    <div class="section">
+      <h3>Målvakter</h3>
+      <div class="spelare" id="Neuer" draggable="true">Neuer</div>
+      <div class="spelare" id="Buffon" draggable="true">Buffon</div>
+      <div class="spelare" id="Casillas" draggable="true">Casillas</div>
+    </div>
+
+    <div class="section">
+      <h3>Försvarare</h3>
+      <div class="spelare" id="D.Alves" draggable="true">D.Alves</div>
+      <div class="spelare" id="Cafu" draggable="true">Cafu</div>
+      <div class="spelare" id="Lahm" draggable="true">Lahm</div>
+      <div class="spelare" id="S.Ramos" draggable="true">S.Ramos</div>
+      <div class="spelare" id="Maldini" draggable="true">Maldini</div>
+      <div class="spelare" id="V.Dijk" draggable="true">V.Dijk</div>
+      <div class="spelare" id="J.Terry" draggable="true">J.Terry</div>
+      <div class="spelare" id="F.Baresi" draggable="true">F.Baresi</div>
+      <div class="spelare" id="Puyol" draggable="true">Puyol</div>
+      <div class="spelare" id="Marcelo" draggable="true">Marcelo</div>
+      <div class="spelare" id="A.Cole" draggable="true">A.Cole</div>
+      <div class="spelare" id="J.Alba" draggable="true">J.Alba</div>
+    </div>
+
+    <div class="section">
+      <h3>Mittfältare</h3>
+      <div class="spelare" id="Iniesta" draggable="true">Iniesta</div>
+      <div class="spelare" id="Xavi" draggable="true">Xavi</div>
+      <div class="spelare" id="Modric" draggable="true">Modric</div>
+      <div class="spelare" id="Gerrard" draggable="true">Gerrard</div>
+      <div class="spelare" id="Pirlo" draggable="true">Pirlo</div>
+      <div class="spelare" id="Kroos" draggable="true">Kroos</div>
+      <div class="spelare" id="Zidane" draggable="true">Zidane</div>
+      <div class="spelare" id="Maradona" draggable="true">Maradona</div>
+      <div class="spelare" id="Pele" draggable="true">Pele</div>
+    </div>
+    
+    <div class="spelar-pool" id="spelarPool">
+    <div class="section">
+      <h3>Anfallare</h3>
+      <div class="spelare" id="L.Messi" draggable="true">L. Messi</div>
+      <div class="spelare" id="M.Salah" draggable="true">M. Salah</div>
+      <div class="spelare" id="G.Bale" draggable="true">G. Bale</div>
+      <div class="spelare" id="Ronaldo" draggable="true">Ronaldo</div>
+      <div class="spelare" id="Neymar" draggable="true">Neymar</div>
+      <div class="spelare" id="R.Dinho" draggable="true">R. Dinho</div>
+      <div class="spelare" id="R9" draggable="true">R9</div>
+      <div class="spelare" id="Titi" draggable="true">Titi</div>
+      <div class="spelare" id="Suarez" draggable="true">Suarez</div>
+    </div>
+  </div>
+
+  <script>
+document.addEventListener("dragstart", function(event) {
+   dragstartHandler(event);
+});
+
+document.getElementById("Reset").addEventListener("click", function() {
+  window.location.reload(true);
+});
+
+function dragstartHandler(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function dragoverHandler(ev) {
+  ev.preventDefault();
+}
+
+function dropHandler(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+
+window.addEventListener('dragover', function(ev) {
+  const scrollMargin = 50;
+  const scrollSpeed = 10;
+  if (ev.clientY < scrollMargin) {
+    window.scrollBy(0, -scrollSpeed);
+  }
+});
+  </script>
+
+</body>
+</html>

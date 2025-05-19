@@ -1,0 +1,30 @@
+#bilder{
+    position: relative;
+    display: flex;
+}
+#window{
+
+height:auto;
+width:auto;
+overflow: hidden;
+}
+#Right{
+z-index: 10;
+top: 65%;
+position:absolute;
+right: 30px;
+height: 30px;
+font-size: 80px;
+cursor: pointer;
+font-size: 17px;
+}
+#Left{
+z-index: 10;
+top: 65%;
+position: absolute;
+left: 30px;
+height: 30px;
+font-size: 80px;
+cursor: pointer;
+font-size: 17px;
+}
