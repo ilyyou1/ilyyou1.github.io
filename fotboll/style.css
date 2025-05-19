@@ -111,4 +111,17 @@ body {
     left: 50%;
     
   }
-  
+  .klubb-bild {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  #klubb {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+  }
