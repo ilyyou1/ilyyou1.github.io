@@ -127,7 +127,6 @@ body {
     object-fit: contain;
     border: 2px solid transparent;
     border-radius: 8px;
-    transition: border-color 0.3s ease;
   }
   
   #klubb label {
